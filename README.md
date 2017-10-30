@@ -459,50 +459,58 @@ In short, it allows you to create a copy of an existing object and modify it to 
 
 In PHP, it can be easily done using `clone`
 
-```php
-class Sheep
-{
-    protected $name;
-    protected $category;
+```java
+public class Sheep {
 
-    public function __construct(string $name, string $category = 'Mountain Sheep')
-    {
-        $this->name = $name;
-        $this->category = $category;
+        protected String name;
+        protected String category;
+        
+        public Sheep(String name, String category){
+            this.name = name;
+            this.category = category;
+        }
+        
+        public void setName(String name){
+            this.name = name;
+            
+        }
+        
+        public String getName(){
+            return this.name;
+            
+        }
+        
+        public void setCategory(String category){
+            this.category = category;
+            
+        }
+        
+        public String getCategory(){
+            return this.category;
+        }
+        
+   
+    
+    public static void main(String[] args) {
+                    
+            // Creation of the original
+        Sheep original = new Sheep("Jolly", "Mountain Sheep");
+        System.out.println(original.getName());
+        System.out.println(original.getCategory());
+        
+            // Cloning and modification is necessary
+        Sheep clone = original;
+        
+        System.out.println("Sheep Cloned");
+        
+        clone.setName("Dolly");
+        System.out.println(clone.getName());
+        System.out.println(clone.getCategory());
+        
+        
     }
-
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function setCategory(string $category)
-    {
-        $this->category = $category;
-    }
-
-    public function getCategory()
-    {
-        return $this->category;
-    }
+    
 }
-```
-Then it can be cloned like below
-```php
-$original = new Sheep('Jolly');
-echo $original->getName(); // Jolly
-echo $original->getCategory(); // Mountain Sheep
-
-// Clone and modify what is required
-$cloned = clone $original;
-$cloned->setName('Dolly');
-echo $cloned->getName(); // Dolly
-echo $cloned->getCategory(); // Mountain sheep
 ```
 
 Also you could use the magic method `__clone` to modify the cloning behavior.
